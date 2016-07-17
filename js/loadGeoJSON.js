@@ -42,10 +42,17 @@ map.on('click', function (e) {
     // based on the feature found.
     var popup = new mapboxgl.Popup()
         .setLngLat(feature.geometry.coordinates)
-        .setHTML('<h3>'+feature.properties.Org_Name + '</h3>' +
-                 '<p>'+'<b>Address: </b>' + feature.properties.Address_w + '</p>' +
-                 '<p>'+'<b>Target Age: </b>' + feature.properties.Targ_Age + '</p>' +
-                 '<p>'+'<b>Postal Code: </b>' + feature.properties.postal + '</p>')
+        .setHTML('<ul>'+'<h3>'+feature.properties.Org_Name + '</h3>' +
+                 '<li>'+'<b>Address: </b>' + feature.properties.Address_w + '</li>' +
+                 '<li>'+'<b>Target Age: </b>' + feature.properties.Targ_Age + '</li>' +
+                 '<li>'+'<b>Postal Code: </b>' + feature.properties.postal + '</li>' +
+                 '<li>'+'<b>Service Category: </b>'+ feature.properties.specific_service +'</li>' +
+                 '<li>'+'<b>Website: </b>'+'<a target="_blank" href="'+feature.properties.Website+'">'+ feature.properties.Website + '</a>'+'</li>' +
+                 '<li>'+'<b>Phone: </b>'+'<a href="tel:'+feature.properties.phone+'">'+feature.properties.phone+'</a>'+'</li>' +
+                 '<li>'+'<b>Hours: </b>'+feature.properties.Hours+'</li>'+
+                 '<li>'+'<b>Gender: </b>'+feature.properties.Gender+'</li>'
+
+        +'</ul>')
         .addTo(map);
 });
 
