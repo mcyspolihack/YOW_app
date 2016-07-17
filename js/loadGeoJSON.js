@@ -6,9 +6,9 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic29uYWxyIiwiYSI6ImI3ZGNmNTI1Mzc1NzFlYTExMGJkZ
 // Initialize new MapBox Map
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/basic-v8',
     center: [-79.3832,43.6532],
-    zoom: 13
+    zoom: 11
 });
 map.on('style.load', function(){
     map.addSource('yow',{
@@ -18,11 +18,10 @@ map.on('style.load', function(){
 
     map.addLayer({
         "id":"yow",
-        "type": "circle",
+        "type": "symbol",
         "source": "yow",
-        "paint": {
-            "circle-radius": 10,
-            "circle-color": "#ff0000"
+        "layout": {
+            "icon-image": "marker-15"
         }
     });
 
