@@ -42,7 +42,10 @@ map.on('click', function (e) {
     // based on the feature found.
     var popup = new mapboxgl.Popup()
         .setLngLat(feature.geometry.coordinates)
-        .setHTML(feature.properties.Org_Name)
+        .setHTML('<h3>'+feature.properties.Org_Name + '</h3>' +
+                 '<p>'+'<b>Address: </b>' + feature.properties.Address_w + '</p>' +
+                 '<p>'+'<b>Target Age: </b>' + feature.properties.Targ_Age + '</p>' +
+                 '<p>'+'<b>Postal Code: </b>' + feature.properties.postal + '</p>')
         .addTo(map);
 });
 
