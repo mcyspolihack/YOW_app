@@ -24,7 +24,7 @@
     // Initialize new MapBox Map
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/light-v8',
+        style: 'mapbox://styles/mapbox/streets-v9',
         center: [-79.3832,43.6532],
         zoom: 13
     });
@@ -72,6 +72,7 @@
         var features = map.queryRenderedFeatures(e.point, { layers: ['yow'] });
         map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
     });
+    map.addControl(new mapboxgl.Geolocate({position: 'top-left'}));
 
 
 </script>
