@@ -10,19 +10,46 @@ var map = new mapboxgl.Map({
     center: [-79.3832,43.6532],
     zoom: 11
 });
+
+//Grab GeoJSON data and store into object
+var yowGJ = (function () {
+    var json = null;
+    $.ajax({
+        'async': false,
+        'global': false,
+        'url':"https://raw.githubusercontent.com/PoliHackSteppingStones/steppingstonesMapbox/master/yow-GJ.json",
+        'dataType': "json",
+        'success': function (data) {
+            json = data;
+        }
+    });
+    return json;
+})();
+
 map.on('style.load', function(){
+    //Load object as data for map
     map.addSource('yow',{
         "type": "geojson",
-        "data": "https://raw.githubusercontent.com/PoliHackSteppingStones/steppingstonesMapbox/master/yow-GJ.json"
+        "data": yowGJ
     });
 
-    map.addLayer({
-        "id":"yow",
-        "type": "symbol",
-        "source": "yow",
-        "layout": {
-            "icon-image": "marker-15"
+    yowGJ.features.forEach(function(feature){
+        var serviceSpecific = feature.properties['specific_service'];//Grab data to feed into filter
+        var layerID = 'yow-' + serviceSpecific;
+        console.log(serviceSpecific);
+        // Add a layer for this symbol type if it hasn't been added already.
+        if (!map.getLayer(layerID)) {
+            map.addLayer({
+                "id":layerID,
+                "type": "symbol",
+                "source": "yow",
+                "layout": {
+                    "icon-image": "marker-15"
+                },
+                "filter": ["==", "specific_service", serviceSpecific]
+            });
         }
+
     });
 
 });
@@ -30,6 +57,7 @@ map.on('style.load', function(){
 // When a click event occurs near a place, open a popup at the location of
 // the feature, with description HTML from its properties.
 map.on('click', function (e) {
+    console.log(e);
     var features = map.queryRenderedFeatures(e.point, { layers: ['yow'] });
 
     if (!features.length) {
