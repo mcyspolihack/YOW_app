@@ -1,4 +1,3 @@
-
 var dat = "test"; 
 
 function uploadFile(file)
@@ -110,25 +109,21 @@ var mymap = L.map('mapid',{ zoomControl:false }).setView([43.55, -79.9], 11);
     maxZoom: 19
 }).addTo(mymap);
 
-
-        window.onload = function(){
-            document.getElementById("topicSelect").onchange = function()
-            {            
-                document.getElementById("buttons").innerHTML = buttonSelector(document.getElementById("topicSelect").value)
-                polyLayer.clearLayers();
-                L.geoJson(poly,{style: {weight:1, color: "grey", fillOpacity: 0}}).addTo(mymap);
-            }
-            document.getElementById("buttons").onchange = function()
-            {
-                
-                dat = document.querySelector('input[type="radio"]:checked').value;               
-                polyLayer.clearLayers();
-                polyLayer = L.geoJson(poly,{style: style}).addTo(mymap);
-                
-
-                
-            }
-        };
-
-
-
+window.onload = function(){
+    document.getElementById("topicSelect").onchange = function()
+    {            
+        document.getElementById("buttons").innerHTML = buttonSelector(document.getElementById("topicSelect").value)
+        polyLayer.clearLayers();
+        L.geoJson(poly,{style: {weight:1, color: "grey", fillOpacity: 0}}).addTo(mymap);
+    }
+    document.getElementById("buttons").onchange = function()
+    {
+        
+        dat = document.querySelector('input[type="radio"]:checked').value;               
+        polyLayer.clearLayers();
+        polyLayer = L.geoJson(poly,{style: style}).addTo(mymap);      
+    }
+    new L.Control.GeoSearch({
+				provider: new L.GeoSearch.Provider.Google()
+		}).addTo(mymap);
+};
