@@ -96,10 +96,10 @@ var mymap = L.map('mapid',{ zoomControl:false }).setView([43.55, -79.9], 11);
         L.control.zoom({position: 'topright'}).addTo(mymap)
 
 
-        var poly = uploadFile("data/geojson/misshalt_nhs_4326.geojson");
-        console.log(poly);
+        var pts = uploadFile("data/geojson/yow-GJ.json");
+        console.log(pts);
 
-        var polyLayer = L.geoJson(poly,{style: {weight:1, color: "grey", fillOpacity: 0}}).addTo(mymap);
+        var ptsLayer = L.geoJson(pts).addTo(mymap);
         
         
 
@@ -114,14 +114,14 @@ window.onload = function(){
     {            
         document.getElementById("buttons").innerHTML = buttonSelector(document.getElementById("topicSelect").value)
         polyLayer.clearLayers();
-        L.geoJson(poly,{style: {weight:1, color: "grey", fillOpacity: 0}}).addTo(mymap);
+        L.geoJson(pts).addTo(mymap);
     }
     document.getElementById("buttons").onchange = function()
     {
         
         dat = document.querySelector('input[type="radio"]:checked').value;               
-        polyLayer.clearLayers();
-        polyLayer = L.geoJson(poly,{style: style}).addTo(mymap);      
+        ptsLayer.clearLayers();
+        ptsLayer = L.geoJson(pts).addTo(mymap);      
     }
     new L.Control.GeoSearch({
 				provider: new L.GeoSearch.Provider.Google()
