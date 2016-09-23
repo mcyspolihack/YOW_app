@@ -1,4 +1,9 @@
-var dat = "test"; 
+$('.navmenu-fixed-left').offcanvas({
+    placement: 'left',
+
+    recalc: 'false'});
+
+var dat = "test";
 var subj = "test";
 var ptsLayer = "test";
 
@@ -59,12 +64,18 @@ function buttonSelector(topic)
             + '<input type="radio" name="Targ_Pop_Spec" value="Youth Justice"> Youth Justice<br>'
             + '<input type="radio" name="Targ_Pop_Spec" value="Concurrent Disorder"> Concurrent Disorder<br>'
             + '<input type="radio" name="Targ_Pop_Spec" value="Afghan"> Afghan<br>'
-            + '<input type="radio" name="Targ_Pop_Spec" value="Somali"> Somali<br>'
+            + '<input type="radio" name="Targ_Pop_Spec" value="Somali"> Somali<br>';
 			return text;
-			break;	
+			break;
 
+      /*  case "Lead_Agency":
+            text = '<h5>Lead Agency</h5><input type="radio" name="Lead_Agency" value= null> null <br>'
+                + '<input type="radio" name="Lead_Agency" value= 1> 1 <br>';
+
+            return text;
+            break;
             		
-
+*/
 		default:
       text = 'All of the YOW agencies for you!';
 			ptsLayer = L.geoJson(pts, {
@@ -80,10 +91,10 @@ function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.Full_Address) {
         //console.log(feature.properties);
-        layer.bindPopup("<b>Organization Name: </b>" + " " + feature.properties.Org_Name + "<br>" +
+        layer.bindPopup(
+          "<b>Organization Name: </b>" + " " + feature.properties.Org_Name + "<br>" +
           "<b>Address: </b>" + " " + feature.properties.Full_Address + "<br>" +
           "<b>Target Community: </b>" + " " + feature.properties.Targ_Comm + "<br>" +
-          "<b>Target Population: </b>" + " " + feature.properties.Targ_Pop + "<br>" +
           "<b>Target Age: </b>" + " " + feature.properties.Targ_Age + "<br>" +
           "<b>Website: </b>" + " <a target='_blank' href=" + feature.properties.Website + ">" + feature.properties.Website + 
           "</a>" + "<br>" +
@@ -145,13 +156,15 @@ window.onload = function(){
 
     var options = {
   		bounds: true,
-  		position: 'topright',
+  		position: 'bottomright',
   		expanded: true,
       markers: true,
       markers: {draggable: false, icon: myIcon},
       autocomplete: true,
       place: true,
-      panToPoint: true
+      panToPoint: true,
+        fullWidth: false,
+        focus:true
 	};
 
   L.control.geocoder('mapzen-Ltbsia1', options).addTo(mymap);
