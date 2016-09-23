@@ -19,30 +19,6 @@ function uploadFile(file)
     return JSON.parse(rawFile.responseText);
 }
 
-
-function getColor(d)
-{
-	return d > 1000 ? '#084594' :
-           d > 500  ? '#2171b5' :
-           d > 200  ? '#4292c6' :
-           d > 100  ? '#6baed6' :
-           d > 50   ? '#9ecae1' :
-           d > 20   ? '#c6dbef' :
-           d > 10   ? '#deebf7' :
-                      '#f7fbff';
-}
-
-function style(feature) {
-    return {
-        fillColor: getColor(feature.properties[window.dat]),
-        weight: 1,
-        opacity: 1,
-        color: 'white',        
-        fillOpacity: 0.6
-    };
-}
-
-
 function buttonSelector(topic)
 {
 	switch(topic)
@@ -89,19 +65,11 @@ function buttonSelector(topic)
 
 var mymap = L.map('mapid',{ zoomControl:false }).setView([43.6532, -79.3832], 6);
 
-<<<<<<< HEAD
 L.control.zoom({position: 'topright'}).addTo(mymap)
 
 
 var pts = uploadFile("data/geojson/YOW_data.geojson");
 console.log(pts);
-=======
-        L.control.zoom({position: 'topright'}).addTo(mymap);
-
-
-        var pts = uploadFile("data/geojson/YOW_data.geojson");
-        console.log(pts);
->>>>>>> d0fe6901e616aa923d47e5bc1c6bd961cd7224f6
 
 var ptsLayer = L.geoJson(pts).addTo(mymap);
 
@@ -117,8 +85,6 @@ window.onload = function(){
         subj = document.getElementById("topicSelect").value
         console.log(subj)
         document.getElementById("buttons").innerHTML = buttonSelector(document.getElementById("topicSelect").value)
-        //ptsLayer.clearLayers();
-        //L.geoJson(pts).addTo(mymap);
     }
     document.getElementById("buttons").onchange = function()
     {      
