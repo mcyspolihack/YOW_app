@@ -96,7 +96,7 @@ var mymap = L.map('mapid',{ zoomControl:false }).setView([43.55, -79.9], 11);
         L.control.zoom({position: 'topright'}).addTo(mymap)
 
 
-        var pts = uploadFile("data/geojson/YOW_data.json");
+        var pts = uploadFile("data/geojson/YOW_data.geojson");
         console.log(pts);
 
         var ptsLayer = L.geoJson(pts).addTo(mymap);
@@ -124,8 +124,23 @@ window.onload = function(){
         ptsLayer.clearLayers();
         ptsLayer = L.geoJson(pts).addTo(mymap);      
     }
-    
-    new L.Control.GeoSearch({
-        provider: new L.GeoSearch.Provider.OpenStreetMap()
-    }).addTo(mymap);
+
+    var myIcon = L.icon({
+    iconUrl: 'img/marker.svg',
+    iconSize: [38, 95]
+});
+
+    var options = {
+  		bounds: true,
+  		position: 'topright',
+  		expanded: true,
+      markers: true,
+      markers: {draggable: false, icon: myIcon},
+      autocomplete: true,
+      place: true,
+      panToPoint: true
+	};
+
+
+    L.control.geocoder('mapzen-Ltbsia1', options).addTo(mymap);
 };
