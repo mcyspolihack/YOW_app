@@ -96,7 +96,7 @@ var mymap = L.map('mapid',{ zoomControl:false }).setView([43.55, -79.9], 11);
         L.control.zoom({position: 'topright'}).addTo(mymap)
 
 
-        var pts = uploadFile("data/geojson/yow-GJ.json");
+        var pts = uploadFile("data/geojson/YOW_data.json");
         console.log(pts);
 
         var ptsLayer = L.geoJson(pts).addTo(mymap);
@@ -113,7 +113,8 @@ window.onload = function(){
     document.getElementById("topicSelect").onchange = function()
     {            
         document.getElementById("buttons").innerHTML = buttonSelector(document.getElementById("topicSelect").value)
-        polyLayer.clearLayers();
+        ptsLayer.clearLayers();
+
         L.geoJson(pts).addTo(mymap);
     }
     document.getElementById("buttons").onchange = function()
