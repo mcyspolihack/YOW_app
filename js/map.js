@@ -1,6 +1,6 @@
 $('.navmenu-fixed-left').offcanvas({
     placement: 'left',
-
+    toggle: 'false',
     recalc: 'false'});
 
 var dat = "test";
