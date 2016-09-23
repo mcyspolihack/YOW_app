@@ -35,15 +35,14 @@ function buttonSelector(topic)
 	{
 		case "Targ_Pop":
 			text = '<h5>Target Population (MCYS)</h5>'
-            + '<input type="radio" name="Targ_Pop" value="YCL"> YCL<br>'
-	  		+ '<input type="radio" name="Targ_Pop" value="RY"> RY<br>'
-	  		+ '<input type="radio" name="Targ_Pop" value="HL"> HL<br>'
-            + '<input type="radio" name="Targ_Pop" value="YM"> YM<br>'
-            + '<input type="radio" name="Targ_Pop" value="GIY"> GIY<br>'
-            + '<input type="radio" name="Targ_Pop" value="NETY"> NETY<br>'
-            + '<input type="radio" name="Targ_Pop" value="YP"> YP<br>'
-            + '<input type="radio" name="Targ_Pop" value="LGBY"> LGBY<br>'
-	  		+ '<input type="radio" name="Targ_Pop" value="NET"> NET';
+            + '<input type="radio" name="Targ_Pop" value="YCL"> Youth in conflict with the law<br>'
+	  		+ '<input type="radio" name="Targ_Pop" value="RY"> Racialized youth<br>'
+	  		+ '<input type="radio" name="Targ_Pop" value="HL"> Homeless youth<br>'
+            + '<input type="radio" name="Targ_Pop" value="YM"> Youth with lived experience of a mental illness<br>'
+            + '<input type="radio" name="Targ_Pop" value="GIY"> Gang involved youth<br>'
+            + '<input type="radio" name="Targ_Pop" value="NETY"> Youth not in education, employment or training<br>'
+            + '<input type="radio" name="Targ_Pop" value="YP"> Youth living in poverty<br>'
+            + '<input type="radio" name="Targ_Pop" value="LGBY"> LBTTQ youth';
 			return text;
 			break;
 
