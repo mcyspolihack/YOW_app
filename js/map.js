@@ -1,6 +1,16 @@
 var dat = "test"; 
 var subj = "test";
 
+var popup = L.popup();//initialize new popup var
+
+/* function used to determine where a user has clicked on a map */
+function onMapClick(e){
+  popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(mymap);
+}
+
 function uploadFile(file)
 {
     var rawFile = new XMLHttpRequest();
@@ -62,16 +72,39 @@ function buttonSelector(topic)
 
 }
 
+function onEachFeature(feature, layer) {
+    // does this feature have a property named popupContent?
+    if (feature.properties && feature.properties.Full_Address) {
+        //console.log(feature.properties);
+        layer.bindPopup("<b>Organization Name: </b>" + " " + feature.properties.Org_Name + "<br>" +
+          "<b>Address: </b>" + " " + feature.properties.Full_Address + "<br>" +
+          "<b>Target Community: </b>" + " " + feature.properties.Targ_Comm + "<br>" +
+          "<b>Target Population: </b>" + " " + feature.properties.Targ_Pop + "<br>" +
+          "<b>Target Age: </b>" + " " + feature.properties.Targ_Age + "<br>" +
+          "<b>Website: </b>" + " <a target='_blank' href=" + feature.properties.Website + ">" + feature.properties.Website + 
+          "</a>" + "<br>" +
+          "<b>Target Population Specification: </b>" + " " + feature.properties.Targ_Pop_Spe + "<br>" +
+          "<b>Hours: </b>" + " " + feature.properties.Hours + "<br>" +
+          "<b>Phone #: </b>" + " <a href=tel:" + feature.properties.Phone_Number + " >" + feature.properties.Phone_Number + 
+          "</a>" + "<br>" +
+          "<b>Lead Agency: </b>" + " " + feature.properties.Lead_Agency + "<br>" +
+          "<b>YOW FTE: </b>" + " " + feature.properties.YOW_FTE + "<br>" +
+          "<b>EYOW FTE: </b>" + " " + feature.properties.EYOW_FTE + "<br>" 
+        );
+    }
+}
+
 var mymap = L.map('mapid',{ zoomControl:false }).setView([43.6532, -79.3832], 6);
 
 L.control.zoom({position: 'topright'}).addTo(mymap)
 
-
 var pts = uploadFile("data/geojson/YOW_data.geojson");
 console.log(pts);
 
-var ptsLayer = L.geoJson(pts).addTo(mymap);
-
+var ptsLayer = L.geoJson(pts, {
+  onEachFeature: onEachFeature
+}).addTo(mymap);
+   
 L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     subdomains: 'abcd',
@@ -116,6 +149,6 @@ window.onload = function(){
       panToPoint: true
 	};
 
-
-    L.control.geocoder('mapzen-Ltbsia1', options).addTo(mymap);
+  L.control.geocoder('mapzen-Ltbsia1', options).addTo(mymap);
+  mymap.on('click');
 };
