@@ -87,13 +87,21 @@ function buttonSelector(topic)
 
 }
 
-var mymap = L.map('mapid',{ zoomControl:false }).setView([43.55, -79.9], 11);
+var mymap = L.map('mapid',{ zoomControl:false }).setView([43.6532, -79.3832], 6);
 
+<<<<<<< HEAD
 L.control.zoom({position: 'topright'}).addTo(mymap)
 
 
 var pts = uploadFile("data/geojson/YOW_data.geojson");
 console.log(pts);
+=======
+        L.control.zoom({position: 'topright'}).addTo(mymap);
+
+
+        var pts = uploadFile("data/geojson/YOW_data.geojson");
+        console.log(pts);
+>>>>>>> d0fe6901e616aa923d47e5bc1c6bd961cd7224f6
 
 var ptsLayer = L.geoJson(pts).addTo(mymap);
 
@@ -126,7 +134,23 @@ window.onload = function(){
             }
         }).addTo(mymap);      
     }
-    new L.Control.GeoSearch({
-				provider: new L.GeoSearch.Provider.Google()
-		}).addTo(mymap);
+
+    var myIcon = L.icon({
+    iconUrl: 'img/marker.svg',
+    iconSize: [38, 95]
+});
+
+    var options = {
+  		bounds: true,
+  		position: 'topright',
+  		expanded: true,
+      markers: true,
+      markers: {draggable: false, icon: myIcon},
+      autocomplete: true,
+      place: true,
+      panToPoint: true
+	};
+
+
+    L.control.geocoder('mapzen-Ltbsia1', options).addTo(mymap);
 };
