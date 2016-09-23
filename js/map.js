@@ -91,9 +91,9 @@ function buttonSelector(topic)
 
 }
 
-var mymap = L.map('mapid',{ zoomControl:false }).setView([43.55, -79.9], 11);
+var mymap = L.map('mapid',{ zoomControl:false }).setView([43.6532, -79.3832], 6);
 
-        L.control.zoom({position: 'topright'}).addTo(mymap)
+        L.control.zoom({position: 'topright'}).addTo(mymap);
 
 
         var pts = uploadFile("data/geojson/YOW_data.geojson");
