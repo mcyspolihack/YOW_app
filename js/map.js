@@ -123,7 +123,8 @@ window.onload = function(){
         ptsLayer.clearLayers();
         ptsLayer = L.geoJson(pts).addTo(mymap);      
     }
+    
     new L.Control.GeoSearch({
-				provider: new L.GeoSearch.Provider.Google()
-		}).addTo(mymap);
+        provider: new L.GeoSearch.Provider.OpenStreetMap()
+    }).addTo(mymap);
 };
