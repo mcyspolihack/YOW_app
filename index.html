@@ -1,37 +1,101 @@
+<!--- Youth Outreach Worker Map 2016 --->
+<!--- Made by List Names.... The PoliHack Team MCYS and East Metro Youth Services --->
+
+
+
+
 <html>
 <head>
+
     <title>YOW Map</title>
-    <!-- Latest compiled and minified CSS -->
     <meta http-equiv="X-UA-Compatible" name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
     <link rel="stylesheet" href="leaflet/leaflet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
 </head>
+
+<style>
+
+
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        padding: 50px 0 0 0;
+    }
+
+    .navbar-toggle {
+        float: left;
+        margin-left: 15px;
+        z-index: 2;
+    }
+
+    @media (min-width: 0) {
+        .navbar-toggle {
+            display: block; /* force showing the toggle */
+        }
+    }
+
+    @media (min-width: 1px) {
+        body {
+            padding: 0;
+        }
+        .navbar {
+            right: auto;
+            background: none;
+            border: none;
+        }
+    }
+
+
+</style>
+
+<div class="canvas">
+
+    <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+ <a class="navmenu-brand" href="#"></a>
+<br>
+    <ul class="nav navmenu-nav">
+
+        <select class = "form-control" id = "topicSelect">
+            <option value = "">All Youth Outreach Worker Agencies</option>
+            <option value = "Targ_Pop">Target Population: MCYS</option>
+            <option value = "Targ_Pop_Spe">Specific Target Population: YOW Agency</option>
+            <!---<option value = "Lead_Agency">Lead Agency </option>--->
+
+        </select>
+
+        <div id = "buttons"></div>
+
+    </ul>
+
+</div>
+
+</div>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"> <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+
+    </button>
+</div>
 
 <body id = "mapid">
 
-    <div class = "well" style = "height:100%; width: 20%; z-index:50; position: relative">
-        <select class = "form-control" id = "topicSelect">
-            <option value = "">All</option>
-            <option value = "Targ_Pop">Target Population: MCYS</option>
-            <option value = "Targ_Pop_Spe">Specific Target Population: YOW Agency</option>
-           
-        </select>
 
-    <div id = "buttons"></div>
 
-    </div>  
+
+
+
     <script src="leaflet/leaflet.js"></script>    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
     <script src='js/map.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.4.1/leaflet-geocoder-mapzen.js"></script>
 </body>
