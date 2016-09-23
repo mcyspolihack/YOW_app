@@ -65,8 +65,11 @@ function buttonSelector(topic)
             		
 
 		default:
-			text = '<h5>Coming Soon!</h5>';
-			return text;
+      text = 'All of the YOW agencies for you!';
+			var ptsLayer = L.geoJson(pts, {
+        onEachFeature: onEachFeature
+      }).addTo(mymap);
+      return text;
 			break;	
 	}
 
@@ -123,6 +126,7 @@ window.onload = function(){
         dat = document.querySelector('input[type="radio"]:checked').value;               
         ptsLayer.clearLayers();
         ptsLayer = L.geoJson(pts, {
+            onEachFeature: onEachFeature,
             filter: function(feature, layer) {
                 console.log(feature.properties[subj])
                 if(feature.properties[subj] != null){
@@ -150,5 +154,4 @@ window.onload = function(){
 	};
 
   L.control.geocoder('mapzen-Ltbsia1', options).addTo(mymap);
-  mymap.on('click');
 };
