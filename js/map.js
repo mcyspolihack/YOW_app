@@ -1,5 +1,6 @@
 var dat = "test"; 
 var subj = "test";
+var ptsLayer = "test";
 
 var popup = L.popup();//initialize new popup var
 
@@ -66,7 +67,7 @@ function buttonSelector(topic)
 
 		default:
       text = 'All of the YOW agencies for you!';
-			var ptsLayer = L.geoJson(pts, {
+			ptsLayer = L.geoJson(pts, {
         onEachFeature: onEachFeature
       }).addTo(mymap);
       return text;
@@ -104,7 +105,7 @@ L.control.zoom({position: 'topright'}).addTo(mymap)
 var pts = uploadFile("data/geojson/YOW_data.geojson");
 console.log(pts);
 
-var ptsLayer = L.geoJson(pts, {
+ptsLayer = L.geoJson(pts, {
   onEachFeature: onEachFeature
 }).addTo(mymap);
    
